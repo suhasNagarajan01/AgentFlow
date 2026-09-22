@@ -1,0 +1,11 @@
+{
+  "title": "AgentFlow",
+  "description": "Streamline bureaucratic processes with a multi-agent workflow engine that automates requests for students and administrators, enhancing efficiency and transparency.",
+  "robots": {
+    "index": true
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
