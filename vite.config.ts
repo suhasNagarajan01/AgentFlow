@@ -7,11 +7,12 @@ import path from 'node:path'
 
 const figmaSiteConfigPath = process.env.FIGMA_SITE_CONFIG_PATH
   ? path.resolve(process.cwd(), process.env.FIGMA_SITE_CONFIG_PATH)
-  : path.resolve(os.homedir(), '.figma', 'make', 'site.json')
+  : path.resolve(process.cwd(), 'config', 'site.json')
 
 const siteConfiguration = fs.existsSync(figmaSiteConfigPath)
   ? JSON.parse(fs.readFileSync(figmaSiteConfigPath, 'utf-8'))
   : {
+      title: 'AgentFlow',
       description: '',
       robots: { index: true },
       accessibility: { addBypassLinks: false, ignoreReducedMotion: false },
