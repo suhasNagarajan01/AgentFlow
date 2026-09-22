@@ -17,6 +17,13 @@ const siteConfiguration = fs.existsSync(figmaSiteConfigPath)
       accessibility: { addBypassLinks: false, ignoreReducedMotion: false },
     }
 
+const allowedHosts = [
+  'localhost',
+  '127.0.0.1',
+  '.onrender.com',
+  ...(process.env.ALLOWED_HOSTS?.split(',').map((host) => host.trim()).filter(Boolean) ?? []),
+]
+
 // Vite config — https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   // .figma/make/deploy-preview passes `--mode development` for cached-preview builds.
@@ -45,6 +52,7 @@ react(),
       host: process.env.FIGMA_DEV_SERVER_HOST || '0.0.0.0',
       port: parseInt(process.env.PORT || '8443'),
       strictPort: true,
+      allowedHosts,
       watch: {
         ignored: [
           '**/.figma/**',
@@ -54,6 +62,7 @@ react(),
     preview: {
       host: process.env.FIGMA_DEV_SERVER_HOST || '0.0.0.0',
       port: parseInt(process.env.PORT || '8443'),
+      allowedHosts,
     },
   }
 })
